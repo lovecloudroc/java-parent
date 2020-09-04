@@ -14,6 +14,7 @@ import java.util.List;
 
 @Api(value = "书籍管理")
 @RestController
+@CrossOrigin//解决跨域
 @RequestMapping("/cms/book")
 public class BookController {
 
@@ -31,8 +32,8 @@ public class BookController {
 
     @ApiOperation(value = "根据条件进行分页查询")
     @PostMapping("{pageNo}/{pageSize}")
-//    @RequestBody(required = false) 查询条件可以为空
-//    @PathVariable(value = "pageSize") 为保万无一失
+//                             @RequestBody(required = false) 查询条件可以为空
+//                             @PathVariable(value = "pageSize") 为保万无一失
     public APICODE findPageBook(@RequestBody(required = false) BookQuery bookQuery,
                                 @PathVariable(value = "pageNo") int pageNo,
                                 @PathVariable(value = "pageSize") int pageSize){
@@ -44,13 +45,11 @@ public class BookController {
         return APICODE.OK().data("total",totalElements).data("items",list);
     }
 
-    @PostMapping("insertBook")
+    @PostMapping("saveBook")
     @ApiOperation(value = "书籍添加")
-    public APICODE insertBook(@RequestBody Book book){
-        Book book1 = bookService.saveOrUpdate(book);
-        System.out.println(book1.getId());
+    public APICODE saveBook(@RequestBody Book book){
+        bookService.saveOrUpdate(book);
         return APICODE.OK();
-
     }
 
     @ApiOperation(value = "根据Id查询书籍")
@@ -68,9 +67,21 @@ public class BookController {
     }
 
     @ApiOperation(value = "根据ID对书籍进行删除")
-    @DeleteMapping("{bookId}")
+    @DeleteMapping("deleteById/{bookId}")
     public APICODE deleteBook(@PathVariable String bookId){
         bookService.removeById(bookId);
+        return APICODE.OK();
+    }
+
+    @ApiOperation(value = "设置书籍上下架")
+    @PutMapping("{bookId}/{state}")
+    public APICODE upOrDownBook(@PathVariable(name = "bookId") String bookId, @PathVariable(name = "state") Integer state) {
+        // ## 根据id查询书籍数据
+        Book book = bookService.getById(bookId);
+//        book.setId(bookId);
+        book.setState(state);
+        // ## 修改数据
+        bookService.saveOrUpdate(book);
         return APICODE.OK();
     }
 

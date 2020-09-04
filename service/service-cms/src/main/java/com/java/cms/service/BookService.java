@@ -43,6 +43,12 @@ public class BookService extends BaseService<BookDao,Book> {
 //                                                   : 的意思是like模糊查询
                 simpleSpecificationBuilder.and("title",":",bookQuery.getTitle());
             }
+            if (!StringUtils.isEmpty(bookQuery.getBeginDate())){
+                simpleSpecificationBuilder.and("gmtCreate","ge",bookQuery.getBeginDate());
+            }
+            if (!StringUtils.isEmpty(bookQuery.getEndDate())){
+                simpleSpecificationBuilder.and("gmtCreate","lt",bookQuery.getEndDate());
+            }
         }
         Specification<Book> specification = simpleSpecificationBuilder.getSpecification();
 

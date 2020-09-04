@@ -14,6 +14,7 @@ public class GlobalExceptionHandler {
     @ResponseBody//转换为Json
     @ExceptionHandler(Exception.class)//只要遇到Exception就去找Exception.class里响应的方法
     public APICODE errorHandler(Exception e){
+        e.printStackTrace();
         return APICODE.ERROR().message("Exception:服务器错误");//返回错误信息
     }
 

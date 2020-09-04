@@ -23,21 +23,57 @@ public class Book {
     @GenericGenerator(name = "generator_uuid",strategy = "uuid")
     @ApiModelProperty(value = "书籍主键,采用hibernate的uuid生成32位字符串")
     private String id;
-
+//
     @Column(name = "title")
     @ApiModelProperty(value = "书名")
     private String title;
 
+    @Column(name = "author")
+    @ApiModelProperty(value = "作者")
+    private String author;
+
+    @Column(name = "first_sort")
+    @ApiModelProperty(value = "一级分类")
+    private String firstSort;
+
+    @Column(name = "secondary")
+    @ApiModelProperty(value = "二级分类")
+    private String secondary;
+
+    @Column(name = "serial")
+    @ApiModelProperty(value = "连载")
+    private int serial;
+
+    @Column(name = "work_number")
+    @ApiModelProperty(value = "字数")
+    private int workNumber;
+//
+    @Column(name = "state")
+    @ApiModelProperty(value = "是否上线")
+    private int state;
+
+    @Column(name = "full_cost")
+    @ApiModelProperty(value = "是否收费")
+    private int fullCost;
+
 
     @Column(name = "gmt_create",nullable = false,updatable = false)
     @CreatedDate
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm-ss",timezone = "GMT+8")
-    @ApiModelProperty(value = "创建时间",example = "2020-02-02 9:00:00")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @ApiModelProperty(value = "授权开始时间",example = "2020-02-02 9:00:00")
     private Date gmtCreate;
 
     @Column(name = "gmt_modified",nullable = false,insertable = false)
     @LastModifiedDate
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm-ss",timezone = "GMT+8")
-    @ApiModelProperty(value = "更新时间", example = "2020-12-12 9:00:00")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @ApiModelProperty(value = "授权结束时间", example = "2020-12-12 9:00:00")
     private Date gmtModified;
+
+    @Column(name = "original")
+    @ApiModelProperty(value = "是否原创")
+    private int original;
+
+    @Column(name = "grant_state")
+    @ApiModelProperty(value = "授权状态")
+    private int grantState;
 }
