@@ -40,7 +40,7 @@ public class Book {
     @ApiModelProperty(value = "二级分类")
     private String secondary;
 
-    @Column(name = "serial")
+    @Column(name = "is_serial")
     @ApiModelProperty(value = "连载")
     private int serial;
 
@@ -48,11 +48,11 @@ public class Book {
     @ApiModelProperty(value = "字数")
     private int workNumber;
 //
-    @Column(name = "state")
+    @Column(name = "is_state")
     @ApiModelProperty(value = "是否上线")
     private int state;
 
-    @Column(name = "full_cost")
+    @Column(name = "is_full_cost")
     @ApiModelProperty(value = "是否收费")
     private int fullCost;
 
@@ -69,11 +69,11 @@ public class Book {
     @ApiModelProperty(value = "授权结束时间", example = "2020-12-12 9:00:00")
     private Date gmtModified;
 
-    @Column(name = "original")
+    @Column(name = "is_original")
     @ApiModelProperty(value = "是否原创")
     private int original;
 
-    @Column(name = "grant_state")
+    @Column(name = "is_grant_state")
     @ApiModelProperty(value = "授权状态")
     private int grantState;
 }

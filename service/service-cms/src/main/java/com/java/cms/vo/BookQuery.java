@@ -13,4 +13,7 @@ public class BookQuery {
     //结束时间
     private String endDate;
 
+    //作者
+    private String author;
+
 }
