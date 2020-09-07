@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "book")
+@Table(name = "cms_book")
 @EntityListeners(AuditingEntityListener.class)
 public class Book {
     
