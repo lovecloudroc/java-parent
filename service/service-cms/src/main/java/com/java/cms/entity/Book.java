@@ -1,6 +1,7 @@
 package com.java.cms.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,17 +14,21 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "cms_book")
+@Table(name = "book")
 @EntityListeners(AuditingEntityListener.class)
 public class Book {
-
+    
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "generator_uuid")
     @GenericGenerator(name = "generator_uuid",strategy = "uuid")
     @ApiModelProperty(value = "书籍主键,采用hibernate的uuid生成32位字符串")
     private String id;
-//
+
+//    @Column(name = "")
+//    @ApiModelProperty(value = "")
+//    private Integer copyrightId;
+
     @Column(name = "title")
     @ApiModelProperty(value = "书名")
     private String title;
@@ -36,44 +41,51 @@ public class Book {
     @ApiModelProperty(value = "一级分类")
     private String firstSort;
 
-    @Column(name = "secondary")
+    @Column(name = "second_sort")
     @ApiModelProperty(value = "二级分类")
-    private String secondary;
+    private String secondSort;
 
-    @Column(name = "is_serial")
-    @ApiModelProperty(value = "连载")
-    private int serial;
+    @Column(name = "is_serialize")
+    @ApiModelProperty(value = "是否连载")
+    private Integer serialize;
 
-    @Column(name = "work_number")
+    @Column(name = "word_number")
     @ApiModelProperty(value = "字数")
-    private int workNumber;
-//
-    @Column(name = "is_state")
-    @ApiModelProperty(value = "是否上线")
-    private int state;
+    private Integer wordNumber;
 
-    @Column(name = "is_full_cost")
+    @Column(name = "is_status")
+    @ApiModelProperty(value = "书籍状态")
+    private Integer status;
+
+    @Column(name = "is_free")
     @ApiModelProperty(value = "是否收费")
-    private int fullCost;
+    private Integer free;
 
-
-    @Column(name = "gmt_create",nullable = false,updatable = false)
+    @Column(name = "start_time",nullable = false,updatable = false)
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty(value = "授权开始时间",example = "2020-02-02 9:00:00")
-    private Date gmtCreate;
+    private Date startTime;
 
-    @Column(name = "gmt_modified",nullable = false,insertable = false)
+    @Column(name = "end_time",nullable = false,insertable = false)
     @LastModifiedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty(value = "授权结束时间", example = "2020-12-12 9:00:00")
-    private Date gmtModified;
+    private Date endTime;
+
+    @Column(name = "info")
+    @ApiModelProperty(value = "书籍简介")
+    private String info;
 
     @Column(name = "is_original")
     @ApiModelProperty(value = "是否原创")
-    private int original;
+    private Integer original;
 
-    @Column(name = "is_grant_state")
-    @ApiModelProperty(value = "授权状态")
-    private int grantState;
+    @Column(name = "gmt_create")
+    @ApiModelProperty(value = "创建时间")
+    private Date gmtCreate;
+
+    @Column(name = "gmt_modified")
+    @ApiModelProperty(value = "结束时间")
+    private Date gmtModified;
 }

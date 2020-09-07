@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(value = "书籍管理")
+@Api(tags = "书籍管理")
 @RestController
 @CrossOrigin//解决跨域
 @RequestMapping("/cms/book")
@@ -74,16 +74,18 @@ public class BookController {
     }
 
     @ApiOperation(value = "设置书籍上下架")
-    @PutMapping("{bookId}/{state}")
-    public APICODE upOrDownBook(@PathVariable(name = "bookId") String bookId, @PathVariable(name = "state") Integer state) {
+    @PutMapping("{bookId}/{status}")
+    public APICODE upOrDownBook(@PathVariable(name = "bookId") String bookId, @PathVariable(name = "status") Integer status) {
         // ## 根据id查询书籍数据
         Book book = bookService.getById(bookId);
 //        book.setId(bookId);
-        book.setState(state);
+        book.setStatus(status);
         // ## 修改数据
         bookService.saveOrUpdate(book);
         return APICODE.OK();
     }
+
+//    public APICODE classification()
 
 
 }

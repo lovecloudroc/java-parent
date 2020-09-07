@@ -44,10 +44,10 @@ public class BookService extends BaseService<BookDao,Book> {
                 simpleSpecificationBuilder.and("title",":",bookQuery.getTitle());
             }
             if (!StringUtils.isEmpty(bookQuery.getBeginDate())){
-                simpleSpecificationBuilder.and("gmtCreate","ge",bookQuery.getBeginDate());
+                simpleSpecificationBuilder.and("startTime","ge",bookQuery.getBeginDate());
             }
             if (!StringUtils.isEmpty(bookQuery.getEndDate())){
-                simpleSpecificationBuilder.and("gmtCreate","lt",bookQuery.getEndDate());
+                simpleSpecificationBuilder.and("startTime","lt",bookQuery.getEndDate());
             }
         }
         Specification<Book> specification = simpleSpecificationBuilder.getSpecification();

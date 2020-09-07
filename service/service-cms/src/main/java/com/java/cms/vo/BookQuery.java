@@ -16,4 +16,7 @@ public class BookQuery {
     //作者
     private String author;
 
+    private String pcode;
+
+    private String code;
 }
