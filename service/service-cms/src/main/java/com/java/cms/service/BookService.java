@@ -49,6 +49,18 @@ public class BookService extends BaseService<BookDao,Book> {
             if (!StringUtils.isEmpty(bookQuery.getEndDate())){
                 simpleSpecificationBuilder.and("startTime","lt",bookQuery.getEndDate());
             }
+            if (!StringUtils.isEmpty(bookQuery.getAuthor())) {
+                simpleSpecificationBuilder.and("author",":",bookQuery.getAuthor());
+            }
+            if (bookQuery.getSerialize() != null && (bookQuery.getSerialize().equals(1) || bookQuery.getSerialize().equals(0))) {
+                simpleSpecificationBuilder.and("serialize","=",bookQuery.getSerialize());
+            }
+            if (bookQuery.getStatus() != null && (bookQuery.getStatus().equals(1) || bookQuery.getStatus().equals(0))){
+                simpleSpecificationBuilder.and("status","=",bookQuery.getStatus());
+            }
+            if (bookQuery.getOriginal() != null && (bookQuery.getOriginal().equals(1) || bookQuery.getOriginal().equals(0))){
+                simpleSpecificationBuilder.and("original","=",bookQuery.getOriginal());
+            }
         }
         Specification<Book> specification = simpleSpecificationBuilder.getSpecification();
 

@@ -19,4 +19,13 @@ public class BookQuery {
     private String pcode;
 
     private String code;
+
+    //连载
+    private Integer serialize;
+
+    //状态
+    private Integer status;
+
+    //原创
+    private Integer original;
 }
